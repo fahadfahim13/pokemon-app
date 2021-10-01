@@ -1,14 +1,26 @@
-import React from 'react';
+import React, {Fragment, useState} from 'react';
 import './App.css';
 import ShowPokemons from "./Components/General/ShowPokemons";
-import Navigation from "./Components/General/Navigation";
+import TeamNavigation from "./Components/General/Navigations/TeamNavigation";
+import TeamView from "./Components/Team/TeamView";
+import HomeNavigation from "./Components/General/Navigations/HomeNavigation";
 
 function App() {
+    const [teamView, setTeamView] = useState(false)
 
   return (
     <div className="App">
-        <Navigation />
-        <ShowPokemons />
+        {!teamView?
+            <Fragment>
+                <TeamNavigation onTeamClick={() => setTeamView(true)}/>
+                <ShowPokemons/>
+            </Fragment>
+            :
+            <Fragment>
+                <HomeNavigation onTeamClick={() => setTeamView(false)} />
+                <TeamView />
+            </Fragment>}
+
     </div>
   );
 }
