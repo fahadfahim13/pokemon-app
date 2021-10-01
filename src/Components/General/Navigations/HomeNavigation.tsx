@@ -1,10 +1,7 @@
 import React from 'react';
-import { Menu, MenuButton, Button, Avatar, WrapItem } from "@chakra-ui/react";
-import {useAppSelector} from "../../../app/hooks";
-import {selectTeamTotal} from "../../../Redux/MyTeam";
+import { Menu, MenuButton, Button, WrapItem } from "@chakra-ui/react";
 
 function HomeNavigation(props: {onTeamClick: () => void }) {
-    const totalPokemons = useAppSelector(selectTeamTotal)
     const { onTeamClick } = props
     return (
         <Menu>
