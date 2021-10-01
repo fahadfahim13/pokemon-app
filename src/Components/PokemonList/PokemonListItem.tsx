@@ -1,30 +1,24 @@
-import React, {Fragment} from 'react';
-import {Box, Button, Fade} from "@chakra-ui/react";
+import React from 'react';
+import {Box} from "@chakra-ui/react";
 import {PokemonResult} from "../../Utils/Constants/API_ResultInterfaces";
 import {addToTeam, removeFromTeam} from "../../Redux/MyTeam";
-import {useAppDispatch} from "../../app/hooks";
+import {useAppDispatch} from "../../app/hooks"
+import AddOrRemoveButtons from "../Team/AddOrRemoveButtons";
+import useTeamPokemons from "../../Utils/Hooks/useTeamPokemons"
 
 function PokemonListItem(props: PokemonResult) {
     const { name, url } = props
     const dispatch = useAppDispatch()
+    const isPresentInTeam = useTeamPokemons({...props})
     return (
-        <Fragment>
-            <Fade in={true}>
-                <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" color="white"
-                     bg="teal.500"
-                     rounded="md"
-                     shadow="md"
-                     onClick={() => console.log(url)}
-                >
-                    <h3>Name: {name}</h3>
-                    <Box>
-                        <Button colorScheme={"teal"} onClick={() => dispatch(addToTeam({...props})) }>Add To team</Button>
-                        <Button colorScheme={"teal"} onClick={() => dispatch(removeFromTeam({...props})) }>Remove from team</Button>
-                    </Box>
-                </Box>
-
-            </Fade>
-        </Fragment>
+        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" color="white" bg="teal.500"
+             shadow="md" onClick={() => console.log(url)} >
+            <h3>Name: {name}</h3>
+            <AddOrRemoveButtons isPresentInTeam={isPresentInTeam}
+                addButtonAction={() => dispatch(addToTeam({...props}))}
+                                removeButtonAction={() => dispatch(removeFromTeam({...props}))}
+            />
+        </Box>
     );
 }
 
