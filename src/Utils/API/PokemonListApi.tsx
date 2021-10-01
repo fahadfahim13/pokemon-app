@@ -26,7 +26,6 @@ export const getPokemon = async (arg: number | string) => {
             return response.data
         })
         .catch((err) => {
-            console.log(err)
             return err
         })
 }
