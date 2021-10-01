@@ -4,12 +4,12 @@ import {PokemonResult} from "../../Utils/Constants/API_ResultInterfaces";
 import {addToTeam, removeFromTeam} from "../../Redux/MyTeam";
 import {useAppDispatch} from "../../app/hooks"
 import AddOrRemoveButtons from "../Team/AddOrRemoveButtons";
-import useTeamPokemons from "../../Utils/Hooks/useTeamPokemons"
+import UseTeamPresent from "../../Utils/Hooks/useTeamPresent";
 
 function PokemonListItem(props: PokemonResult) {
     const { name, url } = props
     const dispatch = useAppDispatch()
-    const isPresentInTeam = useTeamPokemons({...props})
+    const isPresentInTeam = UseTeamPresent({...props})
     return (
         <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" color="white" bg="teal.500"
              shadow="md" onClick={() => console.log(url)} >
