@@ -24,7 +24,6 @@ export const getPokemon = async (arg: number | string) => {
     let result: any = {}
     await axios.get(url)
         .then((response) => {
-            console.log(response.data)
             result = response.data
         })
         .catch((err) => {

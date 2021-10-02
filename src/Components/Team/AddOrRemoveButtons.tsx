@@ -1,14 +1,23 @@
 import React, {useState} from 'react';
-import {Container, Button} from "@chakra-ui/react";
+import {Container, Button, ButtonGroup, IconButton, useToast} from "@chakra-ui/react";
 import {AddIcon, MinusIcon} from "@chakra-ui/icons";
+import {useAppSelector} from "../../app/hooks";
+import {selectTeamTotal} from "../../Redux/MyTeam";
+import {TeamMaxLimitExceedToast} from "../../Utils/Constants/ToastConstants";
 
 function AddOrRemoveButtons(props: {addButtonAction: () => {}, removeButtonAction: () => {}, isPresentInTeam: boolean }) {
     const { addButtonAction, removeButtonAction, isPresentInTeam } = props
-
+    const totalItemsInTeam = useAppSelector(selectTeamTotal)
+    const toast = useToast()
     const [isPresent, setIsPresent] = useState(!isPresentInTeam)
     const addButtonClick = () => {
-        addButtonAction()
-        setIsPresent(false)
+
+        if(totalItemsInTeam <= 5){
+            addButtonAction()
+            setIsPresent(false)
+        } else{
+            toast(TeamMaxLimitExceedToast)
+        }
     }
     const removeButtonClick = () => {
         removeButtonAction()
@@ -16,10 +25,17 @@ function AddOrRemoveButtons(props: {addButtonAction: () => {}, removeButtonActio
     }
     return (
         <Container centerContent maxW="3xl">
+
             {isPresent?
-                <Button borderRadius={"50%"} colorScheme={"teal"} onClick={addButtonClick}><AddIcon /></Button>
+                <ButtonGroup size="sm" isAttached variant="outline" onClick={addButtonClick}>
+                    <Button mr="-px">Add To Team</Button>
+                    <IconButton aria-label="Add to friends" icon={<AddIcon />} />
+                </ButtonGroup>
                 :
-                <Button borderRadius={"50%"} colorScheme={"teal"} onClick={removeButtonClick}><MinusIcon /></Button>
+                <ButtonGroup size="sm" isAttached variant="outline" onClick={removeButtonClick} bg={"pink"}>
+                    <Button mr="-px">Remove From Team</Button>
+                    <IconButton aria-label="Add to friends" icon={<MinusIcon />} />
+                </ButtonGroup>
             }
         </Container>
     );

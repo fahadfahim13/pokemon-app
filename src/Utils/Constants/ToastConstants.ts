@@ -15,3 +15,11 @@ export const SearchErrorToast: ToastInterface = {
     duration: 5000,
     isClosable: true
 }
+
+export const TeamMaxLimitExceedToast: ToastInterface = {
+    title: "Team limit reached.",
+    description: "The maximum limit of team size is 6. More than 6 pokemons are allowed in your team.",
+    status: "warning",
+    duration: 5000,
+    isClosable: true
+}
