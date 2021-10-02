@@ -21,11 +21,13 @@ export const getPokemonList = async (url: string | null | undefined) => {
 
 export const getPokemon = async (arg: number | string) => {
     const url = getPokemonApi(arg)
+    let result: any = {}
     await axios.get(url)
         .then((response) => {
-            return response.data
+            result = response.data
         })
         .catch((err) => {
-            return err
+            result = "Error"
         })
+    return result
 }

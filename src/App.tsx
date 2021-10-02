@@ -1,10 +1,9 @@
 import React, {Fragment, useState} from 'react';
 import './App.css';
-import ShowPokemons from "./Components/General/ShowPokemons";
 import TeamNavigation from "./Components/General/Navigations/TeamNavigation";
 import TeamView from "./Components/Team/TeamView";
 import HomeNavigation from "./Components/General/Navigations/HomeNavigation";
-import SearchBar from "./Components/General/SearchBar";
+import SearchComponent from "./Components/General/SearchComponent";
 
 function App() {
     const [teamView, setTeamView] = useState(false)
@@ -14,8 +13,7 @@ function App() {
         {!teamView?
             <Fragment>
                 <TeamNavigation onTeamClick={() => setTeamView(true)} />
-                <SearchBar />
-                <ShowPokemons />
+                <SearchComponent />
             </Fragment>
             :
             <Fragment>

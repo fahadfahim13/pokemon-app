@@ -6,18 +6,24 @@ function usePokemonSearch(props: string) {
     let result: any, setResult: any;
     [result, setResult] = useState({})
     const [error, setError] = useState(false)
+
     useEffect(() => {
         if(value && value !== ''){
             const result = getPokemon(value)
-            result.then((resp) => {
-                    if(resp !== undefined){
-                        setResult(resp)
-                    } else{
-                        setError(true)
-                    }
-                })
+            result.then((resp: any) => {
+                if (resp === "Error" || resp === undefined) {
+                    setError(true)
+                    setResult({})
+                } else {
+                    setResult(resp)
+                    setError(false)
+                }
+            })
+        } else{
+            setError(false)
+            setResult({})
         }
-    }, [setResult, value])
+    }, [value, setResult])
 
     return [result, error]
 }
