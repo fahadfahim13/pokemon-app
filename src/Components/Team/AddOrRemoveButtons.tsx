@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button} from "@chakra-ui/react";
+import {Container, Button} from "@chakra-ui/react";
 import {AddIcon, MinusIcon} from "@chakra-ui/icons";
 
 function AddOrRemoveButtons(props: {addButtonAction: () => {}, removeButtonAction: () => {}, isPresentInTeam: boolean }) {
@@ -15,13 +15,13 @@ function AddOrRemoveButtons(props: {addButtonAction: () => {}, removeButtonActio
         setIsPresent(true)
     }
     return (
-        <Box>
+        <Container centerContent maxW="3xl">
             {isPresent?
                 <Button borderRadius={"50%"} colorScheme={"teal"} onClick={addButtonClick}><AddIcon /></Button>
                 :
                 <Button borderRadius={"50%"} colorScheme={"teal"} onClick={removeButtonClick}><MinusIcon /></Button>
             }
-        </Box>
+        </Container>
     );
 }
 

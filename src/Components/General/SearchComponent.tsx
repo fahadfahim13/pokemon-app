@@ -4,6 +4,7 @@ import usePokemonSearch from "../../Utils/Hooks/usePokemonSearch";
 import PokemonListItem from "../PokemonList/PokemonListItem";
 import {getPokemonApi} from "../../Utils/Constants/API_Constants";
 import ShowPokemons from "./ShowPokemons";
+import {Divider} from "@chakra-ui/react";
 
 function SearchComponent() {
     const [searchValue, setSearchValue] = useState('')
@@ -12,6 +13,7 @@ function SearchComponent() {
     return (
         <div>
             <SearchBar onSetSearch={(value: string) => setSearchValue(value)} />
+            <Divider />
             {(searchResults.name && !error)?
                 <PokemonListItem name={searchResults.name} url={getPokemonApi(searchValue)} />
                 :

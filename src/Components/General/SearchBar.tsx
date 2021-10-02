@@ -3,7 +3,7 @@ import {
     Box, Button,
     FormControl,
     FormLabel,
-    Grid,
+    Grid, GridItem,
     Input,
 } from "@chakra-ui/react";
 
@@ -16,11 +16,15 @@ function SearchBar(props: { onSetSearch: (value: string) => void }) {
             <Box>
                 <FormControl id="pokemonSearch">
                     <FormLabel>Search Pokemons</FormLabel>
-                    <Input type="text" placeholder="Search Pokemon"
-                           onChange={(e) => {
-                               setInputValue(e.currentTarget.value)
-                           }} />
-                    <Button onClick={() => onSetSearch(inputValue)}>Search</Button>
+                    <Grid templateColumns="repeat(5, 1fr)">
+                        <GridItem colSpan={4}>
+                            <Input type="text" placeholder="Search Pokemon"
+                                 onChange={(e) => {
+                                     setInputValue(e.currentTarget.value)
+                                 }} />
+                        </GridItem>
+                        <GridItem colSpan={1}><Button colorScheme="blue" onClick={() => onSetSearch(inputValue)}>Search</Button></GridItem>
+                    </Grid>
                 </FormControl>
             </Box>
         </Grid>
