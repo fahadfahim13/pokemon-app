@@ -4,7 +4,7 @@ import {PokemonResult} from "../Constants/API_ResultInterfaces";
 
 function UseTeamPresent(props: PokemonResult) {
     const teamPokemons = useAppSelector(selectTeamElements)
-    const idx = teamPokemons.findIndex((el) => el.name === props.name)
+    let idx = teamPokemons.findIndex((el, id) => (el.name === props.name))
     return idx > -1
 }
 

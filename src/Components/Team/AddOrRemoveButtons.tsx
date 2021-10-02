@@ -3,7 +3,11 @@ import {Container, Button, ButtonGroup, IconButton, useToast} from "@chakra-ui/r
 import {AddIcon, MinusIcon} from "@chakra-ui/icons";
 import {useAppSelector} from "../../app/hooks";
 import {selectTeamTotal} from "../../Redux/MyTeam";
-import {TeamMaxLimitExceedToast} from "../../Utils/Constants/ToastConstants";
+import {
+    TeamItemAddSuccessToast,
+    TeamItemRemoveSuccessToast,
+    TeamMaxLimitExceedToast
+} from "../../Utils/Constants/ToastConstants";
 
 function AddOrRemoveButtons(props: {addButtonAction: () => {}, removeButtonAction: () => {}, isPresentInTeam: boolean }) {
     const { addButtonAction, removeButtonAction, isPresentInTeam } = props
@@ -11,10 +15,10 @@ function AddOrRemoveButtons(props: {addButtonAction: () => {}, removeButtonActio
     const toast = useToast()
     const [isPresent, setIsPresent] = useState(!isPresentInTeam)
     const addButtonClick = () => {
-
         if(totalItemsInTeam <= 5){
             addButtonAction()
             setIsPresent(false)
+            toast(TeamItemAddSuccessToast)
         } else{
             toast(TeamMaxLimitExceedToast)
         }
@@ -22,6 +26,7 @@ function AddOrRemoveButtons(props: {addButtonAction: () => {}, removeButtonActio
     const removeButtonClick = () => {
         removeButtonAction()
         setIsPresent(true)
+        toast(TeamItemRemoveSuccessToast)
     }
     return (
         <Container centerContent maxW="3xl">

@@ -23,3 +23,19 @@ export const TeamMaxLimitExceedToast: ToastInterface = {
     duration: 5000,
     isClosable: true
 }
+
+export const TeamItemAddSuccessToast: ToastInterface = {
+    title: "Successful",
+    description: "Successfully added item into your team.",
+    status: "success",
+    duration: 5000,
+    isClosable: true
+}
+
+export const TeamItemRemoveSuccessToast: ToastInterface = {
+    title: "Successful",
+    description: "Successfully removed item from your team.",
+    status: "success",
+    duration: 5000,
+    isClosable: true
+}

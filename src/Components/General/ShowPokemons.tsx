@@ -21,7 +21,9 @@ function ShowPokemons(props: {showToast: boolean}) {
     return (
         <div>
             <PokemonList pokemons={results} />
+            <br />
             <PaginationButtons nextButtonAction={() => setUrl(next)} prevButtonAction={() => setUrl(previous)} />
+            <br />
         </div>
     );
 }

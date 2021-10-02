@@ -22,6 +22,7 @@ export const teamSlice = createSlice({
             if (index === -1) {
                 state.pokemons.push(action.payload)
                 state.total += 1;
+                localStorage.setItem('MyTeam', JSON.stringify(state.pokemons))
             }
         },
         removeFromTeam: (state, action: PayloadAction<PokemonResult>) => {
@@ -30,6 +31,7 @@ export const teamSlice = createSlice({
                 if (index > -1) {
                     state.pokemons.splice(index, 1);
                     state.total -= 1
+                    localStorage.setItem('MyTeam', JSON.stringify(state.pokemons))
                 }
             }
         }
